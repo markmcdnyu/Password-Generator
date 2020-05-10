@@ -1,6 +1,6 @@
-// Password Generator
+// JavaScript: Password Generator
 
-//Declare my variables here
+//Declare my variables here. Decided on arrays.
 let lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 let upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let numbers = ["0","1","2","3","4","5","6","7","8","9"];
@@ -8,11 +8,11 @@ let specialChar = ["!","@","$","%","&","*","?","<",">","^","+","=","~","`","[","
 let passwordArray = [];
 let generatedPassword = [];
 
-//this is from the base code from class and will target the button
+//This is from the base code from class and will target the button
 var generateBtn = document.querySelector("#generate");
 let passwordText = document.querySelector("#password");
 
-//Grabbing this element because this will be the place I put the warning about not adhereing to the inctructions
+//Grabbing this element because this will be the place I put the warning about not adhereing to the instructions
 let cardDisplay = document.getElementById("cardDisplay");
 
 // Function to begin generating the password 
@@ -31,7 +31,7 @@ function generatePassword() {
     let useNumbers = confirm("Do you want to include numbers? Cancel for 'no' and Okay for 'yes'");
     let useSpecial = confirm("Do you want to include special characters? Cancel for 'no' and Okay for 'yes'");
 
-    //Put the if/else statements to confirm what the user selected, then add--probably concat to the array
+    //Put the if/else statements to confirm what the user selected, then concat to the array
     if (useLowercase === true) {
     passwordArray = passwordArray.concat(lowerCase);
     }
