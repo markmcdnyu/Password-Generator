@@ -15,11 +15,10 @@ let generateBtn = document.querySelector("#generate");
 let passwordText = document.querySelector("#password");
 
 // Write password to the #password input
-function writePassword() {
+function generatePassword() {
   let pwLength = prompt("How many characters would you like your password to be? (Please select a number between 8 and 128)");
-// Get whatever the user inputs and turn it into an integer 
+  
   pwLength = parseInt(pwLength);
-  //define if it is in range of 8 - 128 chars
   if (pwLength >= 8 && pwLength <= 128) {
     passwordArray = [];
     generatedPassword =[];
@@ -29,52 +28,42 @@ function writePassword() {
   let useNumbers = confirm("Do you want to include numbers? Cancel for 'no' and Okay for 'yes'");
   let useSpecial = confirm("Do you want to include special characters? Cancel for 'no' and Okay for 'yes'");
 
-  //then, need to check true or false for these confrims above
-
-
-  let password = generatePassword(); //not sure if I need this ??
-
-
-
-
+  //then, need to use if/else to check true or false for these confrims above ...if (x === true)
+  if (useLowercase === true) {
+    passwordArray = passwordArray.concat(useLowercase);
   }
-//These are my throught on what I might need for logic and functions
+  if (useUppercase === true) {
+    passwordArray = passwordArray.concat(useUppercase);
+  }
+  if (useNumbers === true) {
+    passwordArray = passwordArray.concat(useNumbers);
+  }
+  if (useSpecial === true) {
+    passwordArray = passwordArray.concat(useSpecial);
+  }
 
-    //  if lowercase == true
-        //input come certain number of lowercase characters
+  //Need a warning or signal to say "refresh the page" if nothing is choosen
 
-    //  if (upper == true) {}
-        //input come certain number of upper characters
-    
-    //  if numbers == true
-        //input come certain number of number characters
-    
-    //  if specialcharcters == true
-        //input come certain number of special characters characters
-
-    // Need to join the true arrays together (might be charCode?)
-    // floor turn into integer [ math.random] (select a position within the array)
-    // i++
-
-  passwordText.value = password;
-
+  if ((useLowercase === false) && (useUppercase === false) && (useNumbers === false) && (useSpecial === false)) {
+    cardDisplay.innerHTML = "ERROR - PLEASE SAY 'YES' TO ONE OF THE CATEGORIES OF CHARACTERS. REFRESH THE PAGE TO START OVER";
+  }
 }
+else {
+    cardDisplay.innerHTML = "ERROR - PLEASE SELECT A NUMBER BETWEEN 8 and 128. REFRESH THE PAGE TO START OVER";
+  }
+}
+//Need a for loop to make the random selection and then display it
+for (let i = 0; i < pwLength; i++) {
+  let randomArray = Math.floor(Math.random() * passwordArray.length);
+  generatedPassword.push(passwordArray[randomArray]);
+};
+return generatedPassword.join('');
 
-//Functions needed 
-/*
-
-function hasNumbers (password){}
-
-function hasLowercase (password){}
-
-function hasUppercase (password){}
-
-function hasSpecialCharacters (password){}
-
-function  (password){}
-
-
-**** ALSO NEED TO INPUT SOMETHING THAT WILL WARN USER WHEN A CRTITERA IS NOT MET*****
-*/
-// Add event listener to generate button
+function newPassword() {
+  let password = writePassword();
+  if (password != 0) {
+    cardDisplay.innerHTML = "Your new password is below";
+  }
+  passwordText.innerText = password;
+}
 generateBtn.addEventListener("click", writePassword);
